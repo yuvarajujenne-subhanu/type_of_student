@@ -1,0 +1,64 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Quiz Questions</title>
+    <link rel="stylesheet"
+          href="{% static 'quiz/style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Hey {{ name }}! 😃</h1>
+
+    <h2>Answer These Funny Questions</h2>
+
+    <form action="{% url 'result' %}" method="POST">
+
+        {% csrf_token %}
+
+        <input type="hidden"
+               name="student_name"
+               value="{{ name }}">
+
+        {% for question in questions %}
+
+        <div class="question-box">
+
+            <h3>{{ question.text }}</h3>
+
+            {% for option, category in question.options %}
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="q{{ forloop.parentloop.counter }}"
+                    value="{{ category }}"
+                    required
+                >
+
+                {{ option }}
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+        <button type="submit">
+            Submit My Answers 🎯
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

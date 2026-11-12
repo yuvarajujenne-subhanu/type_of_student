@@ -1,0 +1,46 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Personality Quiz</title>
+    <link rel="stylesheet"
+          href="{% static 'quiz/style.css' %}">
+</head>
+
+<body>
+
+<div class="container home-box">
+
+    <h1>🎓 Student Personality Quiz</h1>
+
+    <h2>What Type of Student Are You?</h2>
+
+    <p>
+        Are you a topper, sleepy student,
+        backbencher or last-minute warrior?
+    </p>
+
+    <p>Take this funny quiz and discover yourself!</p>
+
+    <form action="{% url 'quiz_page' %}" method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="student_name"
+            placeholder="Enter your name"
+            maxlength="50"
+            required
+        >
+
+        <button type="submit">Start Quiz 🚀</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

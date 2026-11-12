@@ -1,0 +1,53 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Personality Result</title>
+    <link rel="stylesheet"
+          href="{% static 'quiz/style.css' %}">
+</head>
+
+<body>
+
+<div class="container result-box">
+
+    <h1>🎉 Quiz Completed!</h1>
+
+    <h2>Congratulations, {{ name }}!</h2>
+
+    <div class="emoji">
+        {{ personality.emoji }}
+    </div>
+
+    <h1 class="personality-name">
+        {{ personality.name }}
+    </h1>
+
+    <p class="description">
+        {{ personality.description }}
+    </p>
+
+    <h2>Your Score: {{ score }}/10</h2>
+
+    <div class="message">
+        "{{ personality.message }}"
+    </div>
+
+    <h3>Your Personality Scoreboard</h3>
+
+    {% for category, points in scores.items %}
+
+    <p>{{ category|title }}: {{ points }}/10</p>
+
+    {% endfor %}
+
+    <a href="{% url 'home' %}" class="retry-button">
+        Try Again 🔄
+    </a>
+
+</div>
+
+</body>
+</html>
